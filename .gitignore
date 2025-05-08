@@ -1,0 +1,27 @@
+# Python bytecode files
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+
+# Virtual environment
+venv/
+.env
+
+# Django specific
+db.sqlite3
+*.log
+media/
+staticfiles/
+
+# IDE specific
+.vscode/
+.idea/
+
+# Docker specific
+*.env
+docker-compose.override.yml
+
+# OS generated files
+.DS_Store
+Thumbs.db
