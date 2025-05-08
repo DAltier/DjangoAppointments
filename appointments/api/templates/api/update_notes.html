@@ -1,0 +1,32 @@
+{% extends "rest_framework/base.html" %} {% block title %}Update Provider Notes{% endblock %} {% block content %}
+<div class="container">
+  <div class="jumbotron">
+    <h1>Update Provider Notes</h1>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Appointment Details</h3>
+      </div>
+      <div class="panel-body">
+        <p><strong>Provider:</strong> {{ appointment.provider }}</p>
+        <p><strong>Patient:</strong> {{ appointment.patient }}</p>
+        <p>
+          <strong>Topics:</strong>
+          {% for topic in appointment.topics.all %} {{ topic.name }}{% if not forloop.last %}, {% endif %} {% endfor %}
+        </p>
+        <p><strong>Start Time:</strong> {{ appointment.start_time }}</p>
+        <p><strong>Current Status:</strong> {{ appointment.status }}</p>
+      </div>
+    </div>
+
+    <form method="post">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="provider_notes">Provider Notes:</label>
+        <textarea class="form-control" id="provider_notes" name="provider_notes" rows="5">{{ appointment.provider_notes }}</textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Update Notes</button>
+      <a href="{{ return_url }}" class="btn btn-default">Go Back</a>
+    </form>
+  </div>
+</div>
+{% endblock %}
