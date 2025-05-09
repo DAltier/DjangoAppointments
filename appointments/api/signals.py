@@ -6,8 +6,7 @@ from .models import Appointment
 @receiver(post_save, sender=Appointment)
 def check_appointment_status(sender, instance, created, **kwargs):
 	"""
-    Signal to automatically mark appointments as 'Overdue' if they are past their
-    start time and still in 'Scheduled' status.
+    Signal to automatically mark appointments as 'Overdue' if they are past their start time and still in 'Scheduled' status.
     """
 	if not created and instance.status == 'Scheduled':
 		if instance.start_time < timezone.now():
